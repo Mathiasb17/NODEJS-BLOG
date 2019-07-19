@@ -4,31 +4,22 @@ const expressEdge = require('express-edge');
 
 const app = new express();
 
-const express = require('express');
-
 app.use(express.static('public'));
 app.use(expressEdge);
-
 app.set('views', `${__dirname}/views`);
 
-app.get('/', (request, response) => {
-    response.render('index');
-});
+var routes = {
+    '/': 'index',
+    '/index': 'index',
+    '/about': 'about',
+    '/contact': 'contact',
+    '/post': 'post'
+};
 
-app.get('/index', (request, response) => {
-    response.render('index');
-});
-
-app.get('/about', (request, response) => {
-    response.render('about');
-});
-
-app.get('/contact', (request, response) => {
-    response.render('contact');
-});
-
-app.get('/post', (request, response) => {
-    response.render('post')
+Object.keys(routes).forEach((key) => {
+    app.get(key, (request, response) => {
+        response.render(routes[key]);
+    });
 });
 
 app.listen(4000, () => {
