@@ -16,7 +16,7 @@ var routes = {
     '/post': 'post'
 };
 
-Object.keys(routes).forEach((key) => {
+Object.keys(routes).map((key) => {
     app.get(key, (request, response) => {
         response.render(routes[key]);
     });
