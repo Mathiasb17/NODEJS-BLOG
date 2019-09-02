@@ -12,7 +12,7 @@ app.use(express.static('public'));
 app.use(expressEdge);
 app.set('views', `${__dirname}/views`);
 
-var routes = {
+let routes = {
     '/': 'index',
     '/index': 'index',
     '/about': 'about',
